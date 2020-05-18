@@ -1,0 +1,44 @@
+import numpy as np
+import random
+import math
+
+
+def rand(mean, std):
+    x1 = random.random()
+    x2 = random.random()
+    g1 = math.sqrt(-2*np.log(x1)) * math.cos(2*math.pi*x2)
+    s = mean + (g1*std)
+    return s
+
+
+def dow60():
+    m = list()
+    m.append(246000)
+    for i in range(58):
+        m.append(abs(m[i-1]*rand(.0005, .015)))
+    return m
+
+
+def dow190(init):
+    m = list()
+    m.append(init)
+    for i in range(190):
+        m.append(abs(m[i-1]*rand(.01, .013)))
+    return m
+
+
+def printOut(nums, days, size):
+    print('Values for ', days, 'days')
+    for i in range (size-1):
+        print((i+1), ": ", nums[i])
+
+
+q = dow60()
+printOut(q, 60, 60)
+s = q[58]
+u = dow190(s)
+printOut(u, 190, 190)
+
+
+
+
