@@ -1,0 +1,19 @@
+#Written in python 
+import scipy.linalg as lalg
+import matplotlib.pyplot as plt
+import random
+
+def build(size):
+    mat = [[(random.uniform(-1, 1)) for i in range(size)] for j in range(size)]
+    print(mat)
+    return mat
+
+def e_value(matrix):
+    values, vectors = lalg.eig(matrix)
+    print('Values: ', values)
+    print('Vectors:  ', vectors)
+    k = plt.hist(matrix, bins = [-1, -0.5, -0.25, 0.25, .5, 1], histtype= 'bar')
+    plt.show()
+
+p = build(2**12)
+e_value(p)
